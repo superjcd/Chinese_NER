@@ -1,5 +1,5 @@
 import os
-
+from setting import START_TAG, STOP_TAG
 # word_list 和tag_list
 class Vocabulary:
     def __init__(self, split, word_lists, tag_lists, word2id, tag2id):
@@ -33,6 +33,9 @@ class Vocabulary:
 
         word2id = cls.build_map(word_lists)
         tag2id = cls.build_map(tag_lists)
+        # 增加'START' 和 'STOP'
+        tag2id[START_TAG] = len(tag2id)
+        tag2id[STOP_TAG] = len(tag2id)
         return cls(split,word_lists, tag_lists, word2id, tag2id)
 
     @staticmethod
